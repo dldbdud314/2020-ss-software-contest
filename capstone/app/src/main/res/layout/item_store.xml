@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".StoreInfoActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="25dp"
+    android:padding="5dp">
+        <TextView
+            android:layout_marginTop="23dp"
+            android:textColor="#1d1b4a"
+            android:textStyle="bold"
+            android:fontFamily="@font/sam600"
+            android:textSize="23dp"
+            android:id="@+id/storeName"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:fontFamily="@font/sam600"
+            android:textSize="17dp"
+            android:id="@+id/storeCategory"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="13dp" />
+        <TextView
+            android:fontFamily="@font/sam600"
+            android:textSize="17dp"
+             android:gravity="center"
+            android:text="대표메뉴"
+            android:textColor="#8c8ab8"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp" />
+        <TextView
+            android:fontFamily="@font/sam600"
+            android:textSize="13dp"
+            android:id="@+id/storeMenu"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp" />
+        <TextView
+            android:fontFamily="@font/sam600"
+            android:textSize="17dp"
+            android:gravity="center"
+            android:text="운영시간"
+            android:textColor="#8c8ab8"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp" />
+        <TextView
+            android:fontFamily="@font/sam600"
+            android:textSize="13dp"
+            android:id="@+id/storeTime"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp"
+            android:layout_marginBottom="20dp"/>
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.naver.maps.map.MapFragment"
+            app:navermap_latitude="36.763695"
+            app:navermap_longitude="127.281796"
+            app:navermap_zoom="14"/>
+
+</LinearLayout>

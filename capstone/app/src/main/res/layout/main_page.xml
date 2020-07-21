@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+    <ImageView
+        android:id="@+id/splash"
+        android:layout_width="280dp"
+        android:layout_height="320dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/logo" />
+    <TextView
+        android:id="@+id/intro"
+        android:layout_below="@+id/splash"
+        android:layout_centerInParent="true"
+        android:textSize="20dp"
+        android:textColor="#6C69B0"
+        android:fontFamily="@font/sam600"
+        android:text="수정이 맞춤 맛집 추천 어플 "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/intro2"
+        android:layout_below="@+id/intro"
+        android:layout_centerInParent="true"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:fontFamily="@font/sam600"
+        android:layout_marginTop="10dp"
+        android:text="상황에 따른 적합한 분위기의 맛집을 추천해드립니다 :)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_below="@+id/intro2"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#22685A5A">
+        <TextView
+            android:text="수룡's 추천 맛집 탭을 선택해\n 수정이를 위한 최적의 맛집을 탐색해 보아요"
+            android:textColor="#504A4A"
+            android:paddingVertical="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+        <TextView
+            android:text="수정's 페이지 탭을 선택해\n 수정이의 공간을 관리해 보아요"
+            android:textColor="#504A4A"
+            android:paddingVertical="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn1"
+            android:text="수룡's\n추천 맛집"
+            android:background="#6C69B0"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:fontFamily="@font/sam600"
+            android:paddingVertical="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:text="수정's\n페이지"
+            android:background="#6C69B0"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:fontFamily="@font/sam600"
+            android:paddingVertical="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</RelativeLayout>
