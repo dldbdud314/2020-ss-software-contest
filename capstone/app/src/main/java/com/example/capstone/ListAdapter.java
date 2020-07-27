@@ -57,6 +57,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHold
 
                         Intent intent = new Intent(context.getApplicationContext(), StoreInfoActivity.class);
                         intent.putExtra("store_name", item.getStore_name());
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         context.startActivity(intent);
                     }
                 }

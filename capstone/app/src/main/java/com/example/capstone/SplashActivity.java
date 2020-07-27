@@ -20,7 +20,9 @@ public class SplashActivity extends Activity {
 
     private class splashHandler implements Runnable{
         public void run(){
-            startActivity(new Intent(getApplication(), MainActivity.class));
+            Intent itn = new Intent(getApplication(), MainActivity.class);
+            itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(itn);
             finish(); // 로딩페이지 Activity stack에서 제거
         }
     }

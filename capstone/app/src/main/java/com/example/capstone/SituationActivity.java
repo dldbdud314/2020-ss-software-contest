@@ -28,6 +28,7 @@ public class SituationActivity extends Activity {
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), ListActivity.class);
                 intent.putExtra("sit", 1);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
@@ -36,6 +37,7 @@ public class SituationActivity extends Activity {
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), ListActivity.class);
                 intent.putExtra("sit", 2);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
@@ -44,6 +46,7 @@ public class SituationActivity extends Activity {
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), ListActivity.class);
                 intent.putExtra("sit", 3);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
@@ -52,6 +55,7 @@ public class SituationActivity extends Activity {
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), ListActivity.class);
                 intent.putExtra("sit", 4);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
@@ -60,6 +64,7 @@ public class SituationActivity extends Activity {
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), ListActivity.class);
                 intent.putExtra("sit", 5);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
@@ -68,6 +73,7 @@ public class SituationActivity extends Activity {
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), ListActivity.class);
                 intent.putExtra("sit", 6);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
@@ -76,6 +82,7 @@ public class SituationActivity extends Activity {
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), ListActivity.class);
                 intent.putExtra("sit", 7);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
@@ -84,6 +91,7 @@ public class SituationActivity extends Activity {
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), ListActivity.class);
                 intent.putExtra("sit", 8);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
