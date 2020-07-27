@@ -42,6 +42,7 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.list_page);
 
         Intent intent = getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         int sitResult = intent.getIntExtra("sit", 0);
 
         mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
