@@ -5,22 +5,12 @@ package com.example.capstone;
         import android.os.AsyncTask;
         import android.os.Bundle;
 
-
-        import androidx.annotation.NonNull;
         import androidx.appcompat.app.AppCompatActivity;
-        import androidx.fragment.app.Fragment;
-        import androidx.fragment.app.FragmentManager;
         import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
         import android.text.method.ScrollingMovementMethod;
         import android.util.Log;
         import android.widget.TextView;
-
-        import com.naver.maps.map.MapFragment;
-        import com.naver.maps.map.NaverMap;
-        import com.naver.maps.map.OnMapReadyCallback;
-        import com.naver.maps.map.UiSettings;
-        import com.naver.maps.map.util.FusedLocationSource;
 
         import org.json.JSONArray;
         import org.json.JSONException;
