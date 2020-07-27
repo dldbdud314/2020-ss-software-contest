@@ -16,11 +16,11 @@ package com.example.capstone;
         import android.util.Log;
         import android.widget.TextView;
 
-        import com.naver.maps.map.MapFragment;
-        import com.naver.maps.map.NaverMap;
-        import com.naver.maps.map.OnMapReadyCallback;
-        import com.naver.maps.map.UiSettings;
-        import com.naver.maps.map.util.FusedLocationSource;
+        //import com.naver.maps.map.MapFragment;
+        //import com.naver.maps.map.NaverMap;
+        //import com.naver.maps.map.OnMapReadyCallback;
+        //import com.naver.maps.map.UiSettings;
+        //import com.naver.maps.map.util.FusedLocationSource;
 
         import org.json.JSONArray;
         import org.json.JSONException;
