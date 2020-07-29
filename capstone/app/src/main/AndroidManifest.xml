@@ -26,6 +26,7 @@
         <activity android:name=".ListActivity"/>
         <activity android:name=".StoreInfoActivity"/>
         <activity android:name=".SignUpActivity"/>
+        <activity android:name=".SignInActivity"/>
     </application>
 
 </manifest>
