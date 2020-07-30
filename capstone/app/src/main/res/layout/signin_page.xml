@@ -13,7 +13,7 @@
         android:gravity="center"
         android:ems="10"
         android:text="로그인"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:fontFamily="@font/tt"
         android:textColor="#1D1B4A"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
 
     <EditText
         android:id="@+id/et_id"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
         android:ems="10"
@@ -35,7 +35,7 @@
 
     <EditText
         android:id="@+id/et_pass"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
         android:ems="10"
@@ -48,7 +48,7 @@
 
     <Button
         android:id="@+id/btn_signIn"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
         android:text="로그인"
@@ -64,13 +64,13 @@
 
     <TextView
         android:id="@+id/tv_moveSignUp"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:ems="10"
         android:text="아직도 회원이 아니신가요?"
-        android:textSize="15dp"
+        android:textSize="17dp"
         android:fontFamily="@font/tt"
         android:textColor="#1D1B4A"
         app:layout_constraintEnd_toEndOf="@+id/btn_signIn"
@@ -79,7 +79,7 @@
 
     <Button
         android:id="@+id/btn_moveSignUp"
-        android:layout_width="97dp"
+        android:layout_width="147dp"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
         android:text="회원가입"
@@ -94,11 +94,11 @@
 
     <Button
         android:id="@+id/btn_find"
-        android:layout_width="97dp"
+        android:layout_width="147dp"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
         android:text="아이디/비밀번호 찾기"
-        android:textSize="8dp"
+        android:textSize="13dp"
         android:fontFamily="@font/sam600"
         android:background="@drawable/button_background2"
         android:textColor="#8C8AB8"
