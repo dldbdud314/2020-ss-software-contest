@@ -80,6 +80,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <Button
+            android:id="@+id/btn2"
+            android:text="수정's\n맛집 검색"
+            android:background="#6C69B0"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:fontFamily="@font/sam600"
+            android:paddingVertical="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Button
             android:text="수정's\n페이지"
             android:background="#6C69B0"
             android:textColor="#ffffff"

@@ -27,6 +27,7 @@
         <activity android:name=".StoreInfoActivity"/>
         <activity android:name=".SignUpActivity"/>
         <activity android:name=".SignInActivity"/>
+        <activity android:name=".SearchActivity"/>
     </application>
 
 </manifest>

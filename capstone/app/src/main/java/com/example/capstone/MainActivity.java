@@ -14,8 +14,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page);
 
-        Button button = (Button)findViewById(R.id.btn1);
-        button.setOnClickListener(new View.OnClickListener(){
+        //맛집추천 버튼 button1, 맛집검색 버튼 button2
+        Button button1 = (Button)findViewById(R.id.btn1);
+        Button button2 = (Button)findViewById(R.id.btn2);
+
+        button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), SituationActivity.class);
@@ -23,5 +26,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        button2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+
     }
 }
