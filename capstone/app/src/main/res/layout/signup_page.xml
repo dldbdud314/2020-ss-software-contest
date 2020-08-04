@@ -62,7 +62,7 @@
 
         <EditText
             android:id="@+id/et_id"
-            android:layout_width="220dp"
+            android:layout_width="300dp"
             android:layout_height="45dp"
             android:layout_marginTop="20dp"
             android:ems="10"
@@ -113,20 +113,6 @@
             app:layout_constraintStart_toStartOf="@+id/et_passck"
             app:layout_constraintTop_toBottomOf="@+id/et_passck"
             tools:ignore="OnClick" />
-
-        <Button
-            android:id="@+id/validateButton"
-            android:layout_width="75dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="3dp"
-            android:text="중복확인"
-            android:fontFamily="@font/sam600"
-            android:background="@drawable/button_background2"
-            android:textColor="#8C8AB8"
-            app:layout_constraintHorizontal_bias="0.058"
-            app:layout_constraintStart_toEndOf="@+id/et_id"
-            app:layout_constraintBottom_toBottomOf="@+id/et_id" />
 
         <Button
             android:id="@+id/validateButton_nick"

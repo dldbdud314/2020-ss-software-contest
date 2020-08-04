@@ -60,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
             try {
                 /* 서버연결 */
                 URL url = new URL(
-                        "http://" + IP_ADDRESS + "/join.php");
+                        "http://" + IP_ADDRESS + "/joinmail.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
@@ -102,9 +102,20 @@ public class SignUpActivity extends AppCompatActivity {
             String check = data.substring(len - 1, len);
             if (check.equals("s")) {
                 Log.e("Success", "완료!");
-                Intent itn = new Intent(getApplication(), SignInActivity.class);
-                itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(itn);
+                alertBuilder
+                        .setTitle("회원가입 완료")
+                        .setMessage("이메일 인증을 완료하셔야 정상적으로 로그인이 됩니다.")
+                        .setCancelable(true)
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent itn = new Intent(getApplication(), SignInActivity.class);
+                                itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                startActivity(itn);
+                            }
+                        });
+                AlertDialog dialog = alertBuilder.create();
+                dialog.show();
             } else {
                 Log.e("Fail", "실패!");
                 alertBuilder
@@ -117,6 +128,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 Intent itn = new Intent(getApplication(), SignUpActivity.class);
                                 itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                 startActivity(itn);
+                                finish();
                             }
                         });
                 AlertDialog dialog = alertBuilder.create();
