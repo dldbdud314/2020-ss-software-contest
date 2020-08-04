@@ -6,19 +6,49 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SignUpActivity">
     <TextView
-        android:id="@+id/tv_pass"
+        android:id="@+id/tv_id"
         android:layout_width="200dp"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:ems="10"
-        android:text="비밀번호 찾기"
+        android:text="아이디 찾기"
         android:textSize="25dp"
         android:fontFamily="@font/tt"
         android:textColor="#1D1B4A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_none"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="         아이디는 학교이메일입니다"
+        android:focusable="false"
+        android:enabled="false"
+        android:fontFamily="@font/sam600"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/tv_id"
+        app:layout_constraintStart_toStartOf="@+id/tv_id"
+        app:layout_constraintTop_toBottomOf="@+id/tv_id" />
+
+    <TextView
+        android:id="@+id/tv_pass"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="70dp"
+        android:gravity="center"
+        android:ems="10"
+        android:text="비밀번호 찾기"
+        android:textSize="25dp"
+        android:fontFamily="@font/tt"
+        android:textColor="#1D1B4A"
+        app:layout_constraintEnd_toEndOf="@+id/et_none"
+        app:layout_constraintStart_toStartOf="@+id/et_none"
+        app:layout_constraintTop_toTopOf="@+id/et_none"/>
 
     <EditText
         android:id="@+id/et_name"
