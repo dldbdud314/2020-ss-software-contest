@@ -56,7 +56,7 @@
         android:background="@drawable/button_background1"
         android:textColor="#eeeeee"
         android:clickable="true"
-        android:onClick="btn_signIn"
+        android:onClick="btn_findPw"
         app:layout_constraintEnd_toEndOf="@+id/et_Email"
         app:layout_constraintStart_toStartOf="@+id/et_Email"
         app:layout_constraintTop_toBottomOf="@+id/et_Email"
