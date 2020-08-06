@@ -26,7 +26,8 @@ import java.net.URL;
 public class SignInActivity extends AppCompatActivity {
     private static String IP_ADDRESS = "220.69.170.218";
     EditText et_id, et_pass;
-    String sId, sPw;
+    String sId, sPw, sVerify;
+    boolean cCheck = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,13 +62,25 @@ public class SignInActivity extends AppCompatActivity {
         try{
             sId = et_id.getText().toString();
             sPw = et_pass.getText().toString();
-        }catch (NullPointerException e)
+            findDB fdb = new findDB();
+            fdb.execute();
+
+            Thread.sleep(1000);
+
+            if(cCheck == false){
+                Toast.makeText(getApplicationContext(), "이메일 인증이 되지 않은 계정입니다.", Toast.LENGTH_LONG).show();
+                Intent itn = new Intent(getApplication(), SignInActivity.class);
+                itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(itn);
+                finish();
+            } else if(cCheck == true){
+                loginDB lDB = new loginDB();
+                lDB.execute();
+            }
+        }catch (NullPointerException | InterruptedException e)
         {
             Log.e("err",e.getMessage());
         }
-
-        loginDB lDB = new loginDB();
-        lDB.execute();
     }
     public class loginDB  extends AsyncTask<Void, Integer, Void> {
         String data = "";
@@ -128,6 +141,7 @@ public class SignInActivity extends AppCompatActivity {
                 Intent itn = new Intent(getApplication(), MainActivity.class);
                 itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(itn);
+                finish();
             }
             else if(check.equals("e"))
             {
@@ -142,6 +156,7 @@ public class SignInActivity extends AppCompatActivity {
                                 Intent itn = new Intent(getApplication(), SignInActivity.class);
                                 itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                 startActivity(itn);
+                                finish();
                             }
                         });
                 AlertDialog dialog = alertBuilder.create();
@@ -161,10 +176,83 @@ public class SignInActivity extends AppCompatActivity {
                                 Intent itn = new Intent(getApplication(), SignInActivity.class);
                                 itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                 startActivity(itn);
+                                finish();
                             }
                         });
                 AlertDialog dialog = alertBuilder.create();
                 dialog.show();
+            }
+        }
+    }
+
+    public class findDB extends AsyncTask<Void, Integer, Void> {
+        String data = "";
+        int count=0;
+        @Override
+        protected Void doInBackground(Void... unused) {
+
+            /* 인풋 파라메터값 생성 */
+            String param = "u_id=" + sId + "";
+            try {
+                /* 서버연결 */
+                URL url = new URL(
+                        "http://" + IP_ADDRESS + "/findVerify.php");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.connect();
+
+                /* 안드로이드 -> 서버 파라메터값 전달 */
+                OutputStream outs = conn.getOutputStream();
+                outs.write(param.getBytes("UTF-8"));
+                outs.flush();
+                outs.close();
+
+                /* 서버 -> 안드로이드 파라메터값 전달 */
+                InputStream is = null;
+                BufferedReader in = null;
+
+                is = conn.getInputStream();
+                in = new BufferedReader(new InputStreamReader(is), 8 * 1024);
+                String line = null;
+                StringBuffer buff = new StringBuffer();
+                while ((line = in.readLine()) != null) {
+                    buff.append(line + "\n");
+                    count++;
+                }
+                data = buff.toString().trim();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            /* 서버에서 응답 */
+            int len=data.length();
+            StringBuffer checkBf= new StringBuffer();
+            int countChk=0;
+            count--;
+            for(int i=0; i<len; i++){
+                if(data.charAt(i)=='\n'){
+                    countChk++;
+                }
+                if(countChk==count){
+                    checkBf.append(data.charAt(i));
+                }
+            }
+            String check = checkBf.toString().trim();
+            if (check.equals("N")) {
+                Log.e("Success", "이메일 인증 안됨!");
+                cCheck = false;
+            } else if(check.equals("Y")){
+                Log.e("Success", "이메일 인증 완료!");
+                cCheck = true;
             }
         }
     }
