@@ -26,8 +26,7 @@ import java.net.URL;
 public class SignInActivity extends AppCompatActivity {
     private static String IP_ADDRESS = "220.69.170.218";
     EditText et_id, et_pass;
-    String sId, sPw, sVerify;
-    boolean cCheck = false;
+    String sId, sPw;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,20 +63,7 @@ public class SignInActivity extends AppCompatActivity {
             sPw = et_pass.getText().toString();
             findDB fdb = new findDB();
             fdb.execute();
-
-            Thread.sleep(1000);
-
-            if(cCheck == false){
-                Toast.makeText(getApplicationContext(), "이메일 인증이 되지 않은 계정입니다.", Toast.LENGTH_LONG).show();
-                Intent itn = new Intent(getApplication(), SignInActivity.class);
-                itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(itn);
-                finish();
-            } else if(cCheck == true){
-                loginDB lDB = new loginDB();
-                lDB.execute();
-            }
-        }catch (NullPointerException | InterruptedException e)
+        }catch (NullPointerException e)
         {
             Log.e("err",e.getMessage());
         }
@@ -249,10 +235,16 @@ public class SignInActivity extends AppCompatActivity {
             String check = checkBf.toString().trim();
             if (check.equals("N")) {
                 Log.e("Success", "이메일 인증 안됨!");
-                cCheck = false;
+                Toast.makeText(getApplicationContext(), "이메일 인증이 되지 않은 계정입니다.", Toast.LENGTH_LONG).show();
+                Intent itn = new Intent(getApplication(), SignInActivity.class);
+                itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(itn);
+                finish();
+
             } else if(check.equals("Y")){
                 Log.e("Success", "이메일 인증 완료!");
-                cCheck = true;
+                loginDB lDB = new loginDB();
+                lDB.execute();
             }
         }
     }
