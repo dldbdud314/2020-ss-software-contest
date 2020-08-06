@@ -55,7 +55,7 @@ public class IdPassSearchActivity extends AppCompatActivity {
             try {
                 /* 서버연결 */
                 URL url = new URL(
-                        "http://"+IP_ADDRESS+"/findpw.php");
+                        "http://"+IP_ADDRESS+"/findpwMail.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
@@ -127,7 +127,7 @@ public class IdPassSearchActivity extends AppCompatActivity {
                 Log.e("Success", "성공!");
                 AlertDialog.Builder builder = new AlertDialog.Builder(IdPassSearchActivity.this);
                 builder.setTitle("비밀번호 찾기 결과");
-                builder.setMessage("가입했던 메일을 확인하세요\n"+check);
+                builder.setMessage("학교 웹메일을 확인하세요\n");
                 builder.setPositiveButton("예",
                         new DialogInterface.OnClickListener() {
                             @Override

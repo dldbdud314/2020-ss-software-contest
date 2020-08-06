@@ -68,13 +68,12 @@
             android:ems="10"
             android:gravity="center"
             android:text="아이디는 학교 웹메일만 가능합니다."
-            android:textSize="10dp"
+            android:textSize="14dp"
             android:fontFamily="@font/sam600"
             android:textColor="#1D1B4A"
             app:layout_constraintEnd_toEndOf="@id/tv_signinfo"
             app:layout_constraintStart_toStartOf="@id/tv_signinfo"
             app:layout_constraintTop_toBottomOf="@id/tv_signinfo"/>
-
 
         <EditText
             android:id="@+id/et_id"
@@ -96,7 +95,7 @@
             android:ems="10"
             android:gravity="center"
             android:text="비밀번호는 소문자, 숫자, 특수문자를 포함해야합니다.\n(3자 이상 15자 이하)"
-            android:textSize="10dp"
+            android:textSize="13dp"
             android:fontFamily="@font/sam600"
             android:textColor="#1D1B4A"
             app:layout_constraintEnd_toEndOf="@id/et_id"
