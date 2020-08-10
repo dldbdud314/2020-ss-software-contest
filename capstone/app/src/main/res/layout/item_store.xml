@@ -63,5 +63,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="7dp"
             android:layout_marginBottom="20dp"/>
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="7dp"
+            android:layout_alignParentBottom="true"
+            tools:context=".MapsActivity"
+            android:name="com.google.android.gms.maps.SupportMapFragment" />
 
 </LinearLayout>
