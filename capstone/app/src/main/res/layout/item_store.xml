@@ -63,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="7dp"
             android:layout_marginBottom="20dp"/>
+
         <fragment
             android:id="@+id/map"
             android:layout_width="300dp"
@@ -72,5 +73,30 @@
             android:layout_alignParentBottom="true"
             tools:context=".MapsActivity"
             android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="후기"
+                android:textSize="15dp"
+                android:textColor="#8c8ab8"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_weight="5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/reviewBtn"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="후기 작성" />
+        </LinearLayout>
+        <ListView
+            android:id="@+id/reviewList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 </LinearLayout>
