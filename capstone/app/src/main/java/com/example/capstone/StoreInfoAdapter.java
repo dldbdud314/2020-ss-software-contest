@@ -2,6 +2,8 @@ package com.example.capstone;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +34,7 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
         protected TextView category;
         protected TextView menu;
         protected TextView time;
+        protected Button btn_map;
         protected TextView instaText;
         protected LinearLayout instaLayout;
         protected Button hash1,hash2,hash3,hash4,hash5;
@@ -46,6 +49,16 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
             this.category = (TextView) view.findViewById(R.id.storeCategory);
             this.menu = (TextView) view.findViewById(R.id.storeMenu);
             this.time = (TextView) view.findViewById(R.id.storeTime);
+            this.btn_map = (Button) view.findViewById(R.id.btn_map);
+
+            btn_map.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context.getApplicationContext(), MapsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    context.startActivity(intent);
+                }
+            });
             this.instaText = (TextView) view.findViewById(R.id.storeInstaText);
             this.instaLayout = (LinearLayout) view.findViewById(R.id.storeInstaLayout);
             this.hash1=(Button)view.findViewById(R.id.storeInsta1);
@@ -111,7 +124,6 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
                     context.finish();
                 }
             });
-
         }
     }
 

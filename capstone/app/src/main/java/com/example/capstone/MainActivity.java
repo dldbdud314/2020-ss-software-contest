@@ -5,15 +5,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page);
+
         //맛집추천 버튼 button1, 맛집검색 버튼 button2, 마이페이지 버튼 button3
         Button button1 = (Button)findViewById(R.id.btn1);
         Button button2 = (Button)findViewById(R.id.btn2);
