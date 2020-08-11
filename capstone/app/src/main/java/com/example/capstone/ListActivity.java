@@ -1,27 +1,28 @@
 package com.example.capstone;
 
     import android.app.ProgressDialog;
-    import android.content.Intent;
-    import android.os.AsyncTask;
-    import android.os.Bundle;
-    import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
+import android.widget.TextView;
 
-    import androidx.recyclerview.widget.LinearLayoutManager;
-    import androidx.recyclerview.widget.RecyclerView;
-    import android.text.method.ScrollingMovementMethod;
-    import android.util.Log;
-    import android.view.View;
-    import android.widget.TextView;
-    import org.json.JSONArray;
-    import org.json.JSONException;
-    import org.json.JSONObject;
-    import java.io.BufferedReader;
-    import java.io.InputStream;
-    import java.io.InputStreamReader;
-    import java.io.OutputStream;
-    import java.net.HttpURLConnection;
-    import java.net.URL;
-    import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 
 
 public class ListActivity extends AppCompatActivity {
@@ -199,6 +200,7 @@ public class ListActivity extends AppCompatActivity {
         String TAG_NAME = "name";
         String TAG_CATEGORY = "category";
         String TAG_PRICE ="price";
+        String TAG_INSTA ="insta";
 
         try {
             JSONObject jsonObject = new JSONObject(mJsonString);
@@ -211,12 +213,18 @@ public class ListActivity extends AppCompatActivity {
                 String name = item.getString(TAG_NAME);
                 String category = item.getString(TAG_CATEGORY);
                 int price = item.getInt(TAG_PRICE);
+                String insta = item.getString(TAG_INSTA);
 
                 StoreData storeData = new StoreData();
 
                 storeData.setStore_name(name);
                 storeData.setStore_category(category);
                 storeData.setStore_price(price);
+                storeData.setStore_insta(insta);
+                String[] array = insta.split(",");
+                for(int k=0; k<array.length; k++){
+                    storeData.sethash(array[k]);
+                }
 
                 mArrayList.add(storeData);
                 mAdapter.notifyDataSetChanged();

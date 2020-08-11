@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:layout_margin="7dp">
 
     <ImageView
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_horizontal|center_vertical"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/image" />
-
     <LinearLayout
         android:layout_weight="1"
         android:orientation="vertical"
@@ -22,24 +22,32 @@
             android:id="@+id/textView_list_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp" />
-
+            android:layout_marginTop="2dp"
+            android:padding="4dp" />
         <TextView
             android:fontFamily="@font/sam600"
             android:textSize="13dp"
             android:id="@+id/textView_list_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="5dp" />
-
+            android:layout_margin="1dp"
+            android:padding="3dp" />
         <TextView
             android:fontFamily="@font/sam600"
             android:textSize="11dp"
             android:id="@+id/textView_list_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="5dp" />
+            android:layout_margin="1dp"
+            android:padding="3dp" />
+        <TextView
+            android:fontFamily="@font/sam600"
+            android:textSize="11dp"
+            android:textColor="#8C8AB8"
+            android:id="@+id/textView_list_insta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:visibility="gone"/>
     </LinearLayout>
 </LinearLayout>
