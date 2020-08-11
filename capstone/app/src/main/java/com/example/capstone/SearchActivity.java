@@ -76,9 +76,8 @@ public class SearchActivity extends AppCompatActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mArrayList.clear();
                 String sText = searchTxt.getText().toString();
-
+                mArrayList.clear();
                 GetData task = new GetData();
                 String link = "http://" + IP_ADDRESS + "/search.php?searchText=" + sText;
                 task.execute(link,"");
@@ -183,6 +182,9 @@ public class SearchActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
+            //검색결과 없을 때 처리해야 함
+            //if(jsonArray.length()==0) noResultTxt.setVisibility(View.VISIBLE);
+
             for(int i=0;i<jsonArray.length();i++){
 
                 JSONObject item = jsonArray.getJSONObject(i);
@@ -198,11 +200,12 @@ public class SearchActivity extends AppCompatActivity {
                 storeData.setStore_category(category);
                 storeData.setStore_price(price);
                 storeData.setStore_insta(insta);
-
                 String[] array = insta.split(",");
                 for(int k=0; k<array.length; k++){
                     storeData.sethash(array[k]);
                 }
+
+
                 mArrayList.add(storeData);
                 mAdapter.notifyDataSetChanged();
             }

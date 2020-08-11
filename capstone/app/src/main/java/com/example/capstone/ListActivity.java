@@ -36,7 +36,7 @@ public class ListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private String mJsonString;
     private TextView subText;
-
+    String sId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +45,7 @@ public class ListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         int sitResult = intent.getIntExtra("sit", 0);
+        sId = intent.getStringExtra("userId");
 
         mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mRecyclerView = (RecyclerView) findViewById(R.id.listView_main_list);
@@ -225,6 +226,7 @@ public class ListActivity extends AppCompatActivity {
                 for(int k=0; k<array.length; k++){
                     storeData.sethash(array[k]);
                 }
+                storeData.setUser_id(sId);
 
                 mArrayList.add(storeData);
                 mAdapter.notifyDataSetChanged();

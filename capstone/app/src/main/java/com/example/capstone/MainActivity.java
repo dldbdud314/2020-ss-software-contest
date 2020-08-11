@@ -22,7 +22,10 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                Intent itn = getIntent();
+                String sId = itn.getStringExtra("userId");
                 Intent intent = new Intent(getApplicationContext(), SituationActivity.class);
+                intent.putExtra("userId", sId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
@@ -30,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                Intent itn = getIntent();
+                String sId = itn.getStringExtra("userId");
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.putExtra("userId", sId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
