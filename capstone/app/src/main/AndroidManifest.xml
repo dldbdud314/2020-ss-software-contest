@@ -29,8 +29,8 @@
         <activity android:name=".SignInActivity"/>
         <activity android:name=".SearchActivity"/>
         <activity android:name=".IdPassSearchActivity"/>
+        <activity android:name=".MyPageActivity"/>
         <activity android:name=".MapsActivity"/>
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
