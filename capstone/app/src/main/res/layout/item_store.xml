@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".StoreInfoActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +8,7 @@
     android:layout_margin="25dp"
     android:padding="5dp">
         <TextView
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="15dp"
             android:textColor="#1d1b4a"
             android:textStyle="bold"
             android:fontFamily="@font/sam600"
@@ -63,6 +62,82 @@
             android:layout_height="wrap_content"
             android:layout_margin="7dp"
             android:layout_marginBottom="20dp"/>
+        <TextView
+            android:id="@+id/storeInstaText"
+            android:fontFamily="@font/sam600"
+            android:textSize="17dp"
+            android:gravity="center"
+            android:text="인스타그램 유저 반응"
+            android:textColor="#8c8ab8"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:visibility="gone"/>
+        <LinearLayout
+            android:id="@+id/storeInstaLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:visibility="gone">
+                <Button
+                    android:fontFamily="@font/sam600"
+                    android:textSize="12dp"
+                    android:id="@+id/storeInsta1"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:background="#F1F0F8"
+                    android:layout_weight="1"
+                    android:layout_height="30dp"
+                    android:layout_margin="3dp"
+                    android:layout_marginBottom="15dp"/>
+                <Button
+                    android:fontFamily="@font/sam600"
+                    android:textSize="12dp"
+                    android:id="@+id/storeInsta2"
+                    android:background="#F1F0F8"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="30dp"
+                    android:layout_margin="3dp"
+                    android:layout_marginBottom="15dp"/>
+                <Button
+                    android:fontFamily="@font/sam600"
+                    android:textSize="12dp"
+                    android:id="@+id/storeInsta3"
+                    android:background="#F1F0F8"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="30dp"
+                    android:layout_margin="3dp"
+                    android:layout_marginBottom="15dp"/>
+                <Button
+                    android:fontFamily="@font/sam600"
+                    android:textSize="12dp"
+                    android:background="#F1F0F8"
+                    android:id="@+id/storeInsta4"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="30dp"
+                    android:layout_margin="3dp"
+                    android:layout_marginBottom="15dp"/>
+                <Button
+                    android:fontFamily="@font/sam600"
+                    android:background="#F1F0F8"
+                    android:textSize="12dp"
+                    android:id="@+id/storeInsta5"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="30dp"
+                    android:layout_margin="3dp"
+                    android:layout_marginBottom="15dp"/>
+
+        </LinearLayout>
 
         <fragment
             android:id="@+id/map"
@@ -77,23 +152,33 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:orientation="horizontal">
             <TextView
-                android:text="후기"
-                android:textSize="15dp"
+                android:text="[   수정'S 후기    ]"
+                android:textSize="20dp"
                 android:textColor="#8c8ab8"
                 android:textStyle="bold"
-                android:gravity="center"
-                android:layout_weight="5"
-                android:layout_width="wrap_content"
+                android:layout_margin="3dp"
+                android:paddingRight="15dp"
+                android:gravity="right|center_horizontal"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <Button
                 android:id="@+id/reviewBtn"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:fontFamily="@font/sam600"
+                android:textSize="15dp"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_height="35dp"
+                android:background="@drawable/button_background2"
+                android:textColor="#8C8AB8"
                 android:text="후기 작성" />
         </LinearLayout>
+
         <ListView
             android:id="@+id/reviewList"
             android:layout_width="match_parent"

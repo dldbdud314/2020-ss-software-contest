@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -27,7 +25,7 @@ import java.net.URL;
 
 public class ReviewActivity extends AppCompatActivity {
     private static String IP_ADDRESS = "220.69.170.218";
-    TextView nicknameTxt;
+    TextView nicknameTxt, storenameTxt;
     RatingBar ratingbar;
     EditText reviewEdittext;
     Button registerBtn;
@@ -41,7 +39,8 @@ public class ReviewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        nicknameTxt = (TextView)findViewById(R.id.nick);
+        nicknameTxt = (TextView)findViewById(R.id.id);
+        storenameTxt = (TextView)findViewById(R.id.store);
         ratingbar = (RatingBar)findViewById(R.id.ratingBar);
         reviewEdittext = (EditText)findViewById(R.id.reviewEdittext);
         registerBtn = (Button)findViewById(R.id.reviewRegisterBtn);
@@ -49,9 +48,10 @@ public class ReviewActivity extends AppCompatActivity {
 
         //세션유지 구현 후 유저 정보 넘겨주는 거
         //sUserId 웅앵웅
-        sUserId = "20172145@sungshin.ac.kr";
+        sUserId = intent.getStringExtra("userId");
         sStoreName = intent.getStringExtra("store_name");
-
+        nicknameTxt.setText(sUserId);
+        storenameTxt.setText(sStoreName);
         //사용자의 nickname이 나와야 함
         //nicknameTxt.setText();
 

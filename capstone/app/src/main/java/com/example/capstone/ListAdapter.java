@@ -18,6 +18,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHold
     private Activity context = null;
     private AdapterView.OnItemClickListener mListener = null;
     private StoreData item;
+    private String sId;
 
     public ListAdapter(Activity context, ArrayList<StoreData> list) {
         this.context = context;
@@ -57,8 +58,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHold
 
                         Intent intent = new Intent(context.getApplicationContext(), StoreInfoActivity.class);
                         intent.putExtra("store_name", item.getStore_name());
+                        intent.putExtra("userId", sId);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         context.startActivity(intent);
+                        context.finish();
                     }
                 }
             });
@@ -83,6 +86,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHold
             viewholder.insta.setVisibility(View.VISIBLE);
             viewholder.insta.setText(mList.get(position).gethash());
         }
+        sId=mList.get(position).getUser_id();
     }
 
     @Override

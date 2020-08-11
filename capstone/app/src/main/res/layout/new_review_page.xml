@@ -3,59 +3,132 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <TextView
         android:text="리뷰 작성하기"
         android:layout_margin="10dp"
-        android:textSize="30dp"
+        android:textSize="35dp"
+        android:fontFamily="@font/tt"
+        android:textColor="#1D1B4A"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
     <LinearLayout
         android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="닉네임:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/nick"
-            android:text="숨찌"
-            android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_weight="1">
         <TextView
-            android:layout_gravity="center_vertical"
-            android:text="별점: "
-            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:text="아이디:"
+            android:textColor="#111111"
+            android:fontFamily="@font/sam600"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_weight="4"
             android:layout_height="wrap_content"/>
-        <RatingBar
-            android:id="@+id/ratingBar"
+        <TextView
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:id="@+id/id"
+            android:textColor="#111111"
+            android:fontFamily="@font/sam600"
+            android:textSize="20dp"
             android:layout_marginLeft="5dp"
-            android:numStars="5"
-            android:stepSize="1"
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <TextView
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:text="가게:"
+            android:textColor="#111111"
+            android:fontFamily="@font/sam600"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:id="@+id/store"
+            android:textColor="#111111"
+            android:fontFamily="@font/sam600"
+            android:textSize="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:text="별점:"
+            android:textColor="#111111"
+            android:fontFamily="@font/sam600"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal|center_vertical">
+        <RatingBar
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:id="@+id/ratingBar"
+            android:numStars="5"
+            android:rating="0"
+            android:theme="@style/RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="3">
     <TextView
         android:layout_margin="10dp"
         android:text="리뷰 작성하기"
+        android:textColor="#111111"
+        android:fontFamily="@font/sam600"
+        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <EditText
         android:id="@+id/reviewEdittext"
-        android:layout_weight="2"
+        android:textColor="#111111"
+        android:fontFamily="@font/sam600"
+        android:textSize="17dp"
+        android:gravity="center"
         android:hint="당신의 생생한 후기를 들려주세요!"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    </LinearLayout>
     <Button
         android:text="리뷰 등록"
+        android:background="@drawable/button_background1"
+        android:layout_weight="1"
+        android:textColor="#fefefe"
+        android:fontFamily="@font/sam600"
+        android:textSize="23dp"
         android:id="@+id/reviewRegisterBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

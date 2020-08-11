@@ -48,5 +48,13 @@ public class StoreData {
     }
     public void setStore_insta(String store_insta) { this.store_insta = store_insta; }
     public void sethash(String hast){this.hash.add(hast);}
+
+    private String userId;
+    public String getUser_id() {
+        return userId;
+    }
+    public void setUser_id(String userId) {
+        this.userId = userId;
+    }
 }
 
