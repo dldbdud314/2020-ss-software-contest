@@ -76,6 +76,7 @@ public class SearchActivity extends AppCompatActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mArrayList.clear();
                 String sText = searchTxt.getText().toString();
 
                 GetData task = new GetData();
@@ -176,13 +177,11 @@ public class SearchActivity extends AppCompatActivity {
         String TAG_NAME = "name";
         String TAG_CATEGORY = "category";
         String TAG_PRICE ="price";
+        String TAG_INSTA ="insta";
 
         try {
             JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
-
-            //검색결과 없을 때 처리해야 함
-            //if(jsonArray.length()==0) noResultTxt.setVisibility(View.VISIBLE);
 
             for(int i=0;i<jsonArray.length();i++){
 
@@ -191,13 +190,19 @@ public class SearchActivity extends AppCompatActivity {
                 String name = item.getString(TAG_NAME);
                 String category = item.getString(TAG_CATEGORY);
                 int price = item.getInt(TAG_PRICE);
+                String insta = item.getString(TAG_INSTA);
 
                 StoreData storeData = new StoreData();
 
                 storeData.setStore_name(name);
                 storeData.setStore_category(category);
                 storeData.setStore_price(price);
+                storeData.setStore_insta(insta);
 
+                String[] array = insta.split(",");
+                for(int k=0; k<array.length; k++){
+                    storeData.sethash(array[k]);
+                }
                 mArrayList.add(storeData);
                 mAdapter.notifyDataSetChanged();
             }
