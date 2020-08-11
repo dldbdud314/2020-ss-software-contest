@@ -1,6 +1,5 @@
 package com.example.capstone;
 
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -9,6 +8,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,49 +24,53 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-public class StoreInfoActivity extends AppCompatActivity {
+
+
+public class InstaSearchActivity extends AppCompatActivity {
     private static String IP_ADDRESS = "220.69.170.218";
     private static String TAG = "phptest";
 
     private TextView mTextViewResult;
-    private ArrayList<InfoData> mArrayList;
-    private StoreInfoAdapter mAdapter;
+    private ArrayList<StoreData> mArrayList;
+    private ListAdapter mAdapter;
     private RecyclerView mRecyclerView;
-    private String mJsonString;
-    String sId;
+    private String mJsonString,sId;
+    private TextView subText;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.store_page);
+        setContentView(R.layout.insta_search_page);
 
-        mTextViewResult = (TextView) findViewById(R.id.textView_main_result);
-        mRecyclerView = (RecyclerView) findViewById(R.id.listView_main_list);
-
+        subText = (TextView)findViewById(R.id.subText);
         Intent intent = getIntent();
+        String instaText = intent.getStringExtra("insta");
         sId = intent.getStringExtra("userId");
-        mRecyclerView.setHasFixedSize(true);
+        subText.setText("#"+instaText);
+
+        mTextViewResult = (TextView)findViewById(R.id.textView_search_result);
+        mRecyclerView = (RecyclerView) findViewById(R.id.search_list);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-        llm.setAutoMeasureEnabled(false);
         mRecyclerView.setLayoutManager(llm);
 
         mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
 
         mArrayList = new ArrayList<>();
 
-        mAdapter = new StoreInfoAdapter(this, mArrayList);
+        mAdapter = new ListAdapter(this, mArrayList);
         mRecyclerView.setAdapter(mAdapter);
 
         mArrayList.clear();
         mAdapter.notifyDataSetChanged();
 
         GetData task = new GetData();
-        String name = intent.getStringExtra("store_name");
-        String link = "http://220.69.170.218/store.php?name=" + name;
-        task.execute(link, "");
-    }
+        String link = "http://" + IP_ADDRESS + "/instaSearch.php?searchText=" + instaText;
+        task.execute(link,"");
 
-    private class GetData extends AsyncTask<String, Void, String> {
+}
+
+    private class GetData extends AsyncTask<String, Void, String>{
 
         ProgressDialog progressDialog;
         String errorString = null;
@@ -75,7 +79,7 @@ public class StoreInfoActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progressDialog = ProgressDialog.show(StoreInfoActivity.this,
+            progressDialog = ProgressDialog.show(InstaSearchActivity.this,
                     "Please Wait", null, true, true);
         }
 
@@ -87,14 +91,14 @@ public class StoreInfoActivity extends AppCompatActivity {
             mTextViewResult.setText(result);
             Log.d(TAG, "response - " + result);
 
-            if (result == null) {
+            if (result == null){
                 mTextViewResult.setText(errorString);
-            } else {
+            }
+            else {
                 mJsonString = result;
                 showResult();
             }
         }
-
 
         @Override
         protected String doInBackground(String... params) {
@@ -102,12 +106,9 @@ public class StoreInfoActivity extends AppCompatActivity {
             String serverURL = params[0];
             String postParameters = params[1];
 
-
             try {
-
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
 
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
@@ -115,23 +116,21 @@ public class StoreInfoActivity extends AppCompatActivity {
                 httpURLConnection.setDoInput(true);
                 httpURLConnection.connect();
 
-
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 outputStream.write(postParameters.getBytes("UTF-8"));
                 outputStream.flush();
                 outputStream.close();
 
-
                 int responseStatusCode = httpURLConnection.getResponseCode();
                 Log.d(TAG, "response code - " + responseStatusCode);
 
                 InputStream inputStream;
-                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
                     inputStream = httpURLConnection.getInputStream();
-                } else {
+                }
+                else{
                     inputStream = httpURLConnection.getErrorStream();
                 }
-
 
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -139,15 +138,13 @@ public class StoreInfoActivity extends AppCompatActivity {
                 StringBuilder sb = new StringBuilder();
                 String line;
 
-                while ((line = bufferedReader.readLine()) != null) {
+                while((line = bufferedReader.readLine()) != null){
                     sb.append(line);
                 }
 
                 bufferedReader.close();
 
                 return sb.toString().trim();
-
-
             } catch (Exception e) {
 
                 Log.d(TAG, "GetData : Error ", e);
@@ -155,55 +152,54 @@ public class StoreInfoActivity extends AppCompatActivity {
 
                 return null;
             }
-
         }
     }
 
+    private void showResult(){
 
-    private void showResult() {
-
-        String TAG_JSON = "webnautes";
+        String TAG_JSON="webnautes";
         String TAG_NAME = "name";
         String TAG_CATEGORY = "category";
-        String TAG_MENU = "menu";
-        String TAG_TIME = "time";
+        String TAG_PRICE ="price";
         String TAG_INSTA ="insta";
-
 
         try {
             JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
-            for (int i = 0; i < jsonArray.length(); i++) {
+            //검색결과 없을 때 처리해야 함
+            //if(jsonArray.length()==0) noResultTxt.setVisibility(View.VISIBLE);
+
+            for(int i=0;i<jsonArray.length();i++){
 
                 JSONObject item = jsonArray.getJSONObject(i);
 
                 String name = item.getString(TAG_NAME);
                 String category = item.getString(TAG_CATEGORY);
-                String menu = item.getString(TAG_MENU);
-                String time = item.getString(TAG_TIME);
+                int price = item.getInt(TAG_PRICE);
                 String insta = item.getString(TAG_INSTA);
 
-                InfoData personalData = new InfoData();
+                StoreData storeData = new StoreData();
 
-                personalData.setStore_name(name);
-                personalData.setStore_category(category);
-                personalData.setStore_menu(menu);
-                personalData.setStore_time(time);
-                personalData.setStore_insta(insta);
+                storeData.setStore_name(name);
+                storeData.setStore_category(category);
+                storeData.setStore_price(price);
+                storeData.setUser_id(sId);
+                storeData.setStore_insta(insta);
                 String[] array = insta.split(",");
                 for(int k=0; k<array.length; k++){
-                    personalData.sethash(array[k]);
+                    storeData.sethash(array[k]);
                 }
-                personalData.setUser_id(sId);
 
-                mArrayList.add(personalData);
+
+                mArrayList.add(storeData);
                 mAdapter.notifyDataSetChanged();
             }
-        } catch (JSONException e) {
 
+        } catch (JSONException e) {
             Log.d(TAG, "showResult : ", e);
         }
 
     }
+
 }
