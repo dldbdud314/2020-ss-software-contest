@@ -3,9 +3,12 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,6 +28,7 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
         protected TextView category;
         protected TextView menu;
         protected TextView time;
+        protected Button btn_map;
 
 
         @SuppressLint("WrongViewCast")
@@ -34,6 +38,16 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
             this.category = (TextView) view.findViewById(R.id.storeCategory);
             this.menu = (TextView) view.findViewById(R.id.storeMenu);
             this.time = (TextView) view.findViewById(R.id.storeTime);
+            this.btn_map = (Button) view.findViewById(R.id.btn_map);
+
+            btn_map.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context.getApplicationContext(), MapsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

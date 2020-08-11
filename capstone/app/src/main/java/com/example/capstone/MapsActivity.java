@@ -1,42 +1,43 @@
 package com.example.capstone;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import net.daum.mf.map.api.MapPOIItem;
+import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapView;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
-    private GoogleMap mMap;
+import static com.kakao.util.maps.helper.Utility.getKeyHash;
+
+public class MapsActivity extends AppCompatActivity {
+    public MapView mMapView;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.item_store);
+        setContentView(R.layout.map_page);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        Intent intent = getIntent();
 
-        // 맵이 실행되면 onMapReady 실행
-        mapFragment.getMapAsync(this);
-    }
+        getKeyHash(getApplicationContext());
+        mMapView = new MapView(this);
+        ViewGroup mapViewContainer = findViewById(R.id.map);
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        mapViewContainer.addView(mMapView);
 
-        // 구글에서 등록한 api와 엮어주기
-        // 시작위치를 서울 시청으로 변경
-        LatLng seoul = new LatLng(37.52487, 126.92723);
+        mMapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.591742, 127.021249), true);
+        mMapView.setZoomLevel(1, true);
 
-        mMap.addMarker(new MarkerOptions().position(seoul).title("서울"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(seoul));
+        MapPOIItem marker = new MapPOIItem();
+        marker.setItemName("Default Marker");
+        marker.setTag(0);
+        marker.setMapPoint(MapPoint.mapPointWithGeoCoord(37.591742, 127.021249));
+        marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
+        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+
+        mMapView.addPOIItem(marker);
     }
 }
