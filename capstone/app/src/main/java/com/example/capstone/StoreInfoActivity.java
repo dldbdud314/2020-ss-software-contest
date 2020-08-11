@@ -1,16 +1,25 @@
 package com.example.capstone;
 
-        import android.app.ProgressDialog;
+
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,10 +32,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-
-
-public class StoreInfoActivity extends AppCompatActivity /*implements OnMapReadyCallback*/ {
-
+public class StoreInfoActivity extends AppCompatActivity {
     private static String IP_ADDRESS = "220.69.170.218";
     private static String TAG = "phptest";
 
@@ -35,7 +41,6 @@ public class StoreInfoActivity extends AppCompatActivity /*implements OnMapReady
     private StoreInfoAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private String mJsonString;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +74,7 @@ public class StoreInfoActivity extends AppCompatActivity /*implements OnMapReady
         task.execute(link, "");
     }
 
-    private class GetData extends AsyncTask<String, Void, String>{
+    private class GetData extends AsyncTask<String, Void, String> {
 
         ProgressDialog progressDialog;
         String errorString = null;
@@ -90,10 +95,9 @@ public class StoreInfoActivity extends AppCompatActivity /*implements OnMapReady
             mTextViewResult.setText(result);
             Log.d(TAG, "response - " + result);
 
-            if (result == null){
+            if (result == null) {
                 mTextViewResult.setText(errorString);
-            }
-            else {
+            } else {
                 mJsonString = result;
                 showResult();
             }
@@ -130,10 +134,9 @@ public class StoreInfoActivity extends AppCompatActivity /*implements OnMapReady
                 Log.d(TAG, "response code - " + responseStatusCode);
 
                 InputStream inputStream;
-                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
                     inputStream = httpURLConnection.getInputStream();
-                }
-                else{
+                } else {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
@@ -144,7 +147,7 @@ public class StoreInfoActivity extends AppCompatActivity /*implements OnMapReady
                 StringBuilder sb = new StringBuilder();
                 String line;
 
-                while((line = bufferedReader.readLine()) != null){
+                while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
 
@@ -165,20 +168,20 @@ public class StoreInfoActivity extends AppCompatActivity /*implements OnMapReady
     }
 
 
-    private void showResult(){
+    private void showResult() {
 
-        String TAG_JSON="webnautes";
+        String TAG_JSON = "webnautes";
         String TAG_NAME = "name";
         String TAG_CATEGORY = "category";
-        String TAG_MENU ="menu";
-        String TAG_TIME ="time";
+        String TAG_MENU = "menu";
+        String TAG_TIME = "time";
 
 
         try {
             JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
-            for(int i=0;i<jsonArray.length();i++){
+            for (int i = 0; i < jsonArray.length(); i++) {
 
                 JSONObject item = jsonArray.getJSONObject(i);
 
@@ -203,5 +206,4 @@ public class StoreInfoActivity extends AppCompatActivity /*implements OnMapReady
         }
 
     }
-
 }
