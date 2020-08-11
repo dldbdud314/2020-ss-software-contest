@@ -1,5 +1,13 @@
 package com.example.capstone;
 
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
+import android.widget.TextView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -24,7 +32,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-
 public class StoreInfoActivity extends AppCompatActivity {
     private static String IP_ADDRESS = "220.69.170.218";
     private static String TAG = "phptest";
@@ -193,8 +200,6 @@ public class StoreInfoActivity extends AppCompatActivity {
                 mArrayList.add(personalData);
                 mAdapter.notifyDataSetChanged();
             }
-
-
         } catch (JSONException e) {
 
             Log.d(TAG, "showResult : ", e);

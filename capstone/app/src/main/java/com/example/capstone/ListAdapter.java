@@ -1,16 +1,15 @@
 package com.example.capstone;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHolder> {
@@ -37,14 +36,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHold
         protected TextView name;
         protected TextView category;
         protected TextView price;
-
+        protected TextView insta;
+        protected TextView instaTitle;
         @SuppressLint("WrongViewCast")
         public CustomViewHolder(View view) {
             super(view);
             this.name = (TextView) view.findViewById(R.id.textView_list_name);
             this.category = (TextView) view.findViewById(R.id.textView_list_category);
             this.price = (TextView) view.findViewById(R.id.textView_list_price);
-
+            this.insta = (TextView) view.findViewById(R.id.textView_list_insta);
             view.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -79,6 +79,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHold
         viewholder.name.setText(mList.get(position).getStore_name());
         viewholder.category.setText('['+mList.get(position).getStore_category()+']');
         viewholder.price.setText(mList.get(position).getStore_price());
+        if(!mList.get(position).getStore_insta().equals("...")){
+            viewholder.insta.setVisibility(View.VISIBLE);
+            viewholder.insta.setText(mList.get(position).gethash());
+        }
     }
 
     @Override
