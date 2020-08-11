@@ -38,6 +38,7 @@ public class SignInActivity extends AppCompatActivity {
         et_id = (EditText) findViewById(R.id.et_id);
         et_pass = (EditText) findViewById(R.id.et_pass);
         SharedPreferences pref = getSharedPreferences("setting",0);
+
         String prefId = pref.getString("id","");
         et_id.setText(prefId);
         String prefPw = pref.getString("pw","");

@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,7 +29,9 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
         protected TextView category;
         protected TextView menu;
         protected TextView time;
-
+        protected Button newReviewBtn;
+        protected ListView reviewListView;
+        protected ReviewAdapter reviewAdapter;
 
         @SuppressLint("WrongViewCast")
         public CustomViewHolder(View view) {
@@ -36,6 +40,21 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
             this.category = (TextView) view.findViewById(R.id.storeCategory);
             this.menu = (TextView) view.findViewById(R.id.storeMenu);
             this.time = (TextView) view.findViewById(R.id.storeTime);
+            newReviewBtn = (Button) view.findViewById(R.id.reviewBtn);
+            reviewListView = (ListView) view.findViewById(R.id.reviewList);
+
+            reviewListView.setAdapter(reviewAdapter);
+
+            newReviewBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context.getApplicationContext(), ReviewActivity.class);
+                    intent.putExtra("store_name", name.getText().toString());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    context.startActivity(intent);
+                }
+            });
+
         }
     }
 
