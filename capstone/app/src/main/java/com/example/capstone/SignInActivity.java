@@ -2,6 +2,7 @@ package com.example.capstone;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +37,11 @@ public class SignInActivity extends AppCompatActivity {
 
         et_id = (EditText) findViewById(R.id.et_id);
         et_pass = (EditText) findViewById(R.id.et_pass);
+        SharedPreferences pref=getSharedPreferences("setting",0);
+        String prefId = pref.getString("id","");
+        et_id.setText(prefId);
+        String prefPw = pref.getString("pw","");
+        et_pass.setText(prefPw);
 
         Button btn_moveSignUp = (Button) findViewById(R.id.btn_moveSignUp);
         btn_moveSignUp.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +130,11 @@ public class SignInActivity extends AppCompatActivity {
             if(check.equals("s"))
             {
                 Log.e("Success","완료!");
+                SharedPreferences pref = getSharedPreferences("setting",0);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("id", sId);
+                editor.putString("pw", sPw);
+                editor.commit();
                 Intent itn = new Intent(getApplication(), MainActivity.class);
                 itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(itn);
