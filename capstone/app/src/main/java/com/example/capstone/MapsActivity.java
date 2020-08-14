@@ -29,7 +29,7 @@ import java.net.URL;
 
 import static com.kakao.util.maps.helper.Utility.getKeyHash;
 
-public class MapsActivity extends AppCompatActivity {
+public class MapsActivity extends AppCompatActivity implements MapReverseGeoCoder.ReverseGeoCodingResultListener {
     public MapView mMapView;
     private MapReverseGeoCoder reverseGeoCoder;
     private static String IP_ADDRESS = "220.69.170.218";
@@ -38,6 +38,18 @@ public class MapsActivity extends AppCompatActivity {
     String store_add = "";
 
     double lat, longi;
+
+    @Override
+    public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String s) {
+        store_add = s;
+        Log.e("add", "#" + store_add);
+    }
+
+    @Override
+    public void onReverseGeoCoderFailedToFindAddress(MapReverseGeoCoder mapReverseGeoCoder) {
+        store_add = "주소를 찾을 수 없습니다.";
+        Log.e("add", store_add);
+    }
 
     class CustomCalloutBalloonAdapter implements CalloutBalloonAdapter {
         private View mCalloutBalloon;
@@ -148,19 +160,9 @@ public class MapsActivity extends AppCompatActivity {
 
                 Log.e("lat",Double.toString(lat));
                 Log.e("longi",Double.toString(longi));
+                Log.e("add", "#" + store_add);
 
-                reverseGeoCoder = new MapReverseGeoCoder(API_KEY, MapPoint.mapPointWithGeoCoord(lat, longi), new MapReverseGeoCoder.ReverseGeoCodingResultListener() {
-                    @Override
-                    public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String s) {
-                        store_add = s;
-                        Log.e("add", "#" + s);
-                    }
-                    @Override
-                    public void onReverseGeoCoderFailedToFindAddress(MapReverseGeoCoder mapReverseGeoCoder) {
-                        store_add = "주소를 찾을 수 없습니다.";
-                        Log.e("add", store_add);
-                    }
-                }, MapsActivity.this);
+                reverseGeoCoder = new MapReverseGeoCoder(API_KEY, MapPoint.mapPointWithGeoCoord(lat, longi), MapsActivity.this, MapsActivity.this);
 
                 reverseGeoCoder.startFindingAddress();
 
@@ -168,7 +170,6 @@ public class MapsActivity extends AppCompatActivity {
 
                 MapPOIItem marker = new MapPOIItem();
                 marker.setItemName(store_name);
-                marker.setUserObject(store_add);
                 marker.setTag(0);
                 marker.setMapPoint(MapPoint.mapPointWithGeoCoord(lat, longi));
                 marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
@@ -177,8 +178,6 @@ public class MapsActivity extends AppCompatActivity {
 
                 mMapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(lat, longi), true);
                 mMapView.setZoomLevel(1, true);
-
-                reverseGeoCoder.cancelFindingAddress();
             }
         }
     }
