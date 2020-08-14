@@ -221,13 +221,12 @@ public class ListActivity extends AppCompatActivity {
                 storeData.setStore_name(name);
                 storeData.setStore_category(category);
                 storeData.setStore_price(price);
-                storeData.setStore_insta(insta);
+                storeData.setStore_instagram(insta);
                 String[] array = insta.split(",");
                 for(int k=0; k<array.length; k++){
                     storeData.sethash(array[k]);
                 }
                 storeData.setUser_id(sId);
-
                 mArrayList.add(storeData);
                 mAdapter.notifyDataSetChanged();
             }

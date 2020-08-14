@@ -7,7 +7,7 @@ public class InfoData {
     private String store_category;
     private String store_menu;
     private String store_time;
-    private String store_insta;
+    private String store_instagram;
     private ArrayList<String> hash = new ArrayList<String>();
 
     public String getStore_name() {
@@ -22,8 +22,8 @@ public class InfoData {
     public String getStore_time() {
         return store_time;
     }
-    public String getStore_insta() {
-        return store_insta;
+    public String getStore_instagram() {
+        return store_instagram;
     }
     public String gethash(int i){
         String str=hash.get(i);
@@ -41,9 +41,8 @@ public class InfoData {
     public void setStore_time(String store_time) {
         this.store_time = store_time;
     }
-    public void setStore_insta(String store_insta) { this.store_insta = store_insta; this.hash.clear();}
+    public void setStore_instagram(String store_insta) { this.store_instagram = store_insta;}
     public void sethash(String hast){this.hash.add(hast);}
-
 
     private String userId;
     public String getUser_id() {

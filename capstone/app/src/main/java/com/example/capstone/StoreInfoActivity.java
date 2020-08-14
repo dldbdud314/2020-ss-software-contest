@@ -5,13 +5,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,50 +23,111 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 public class StoreInfoActivity extends AppCompatActivity {
     private static String IP_ADDRESS = "220.69.170.218";
     private static String TAG = "phptest";
 
-    private TextView mTextViewResult;
-    private ArrayList<InfoData> mArrayList;
-    private StoreInfoAdapter mAdapter;
-    private RecyclerView mRecyclerView;
+    private TextView tvname, tvcategory, tvmenu, tvtime;
+    private TextView instaText;
+    private View instaLine;
+    private LinearLayout instaLayout;
+    private Button hash1,hash2,hash3,hash4,hash5,btn_map,newReviewBtn;
+
     private String mJsonString;
     String sId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.store_page);
+        setContentView(R.layout.item_store);
 
-        mTextViewResult = (TextView) findViewById(R.id.textView_main_result);
-        mRecyclerView = (RecyclerView) findViewById(R.id.listView_main_list);
+//        mTextViewResult = (TextView) findViewById(R.id.textView_main_result);
+//        mRecyclerView = (RecyclerView) findViewById(R.id.listView_main_list);
 
-        Intent intent = getIntent();
-        sId = intent.getStringExtra("userId");
-        mRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        llm.setAutoMeasureEnabled(false);
-        mRecyclerView.setLayoutManager(llm);
+        Intent itn = getIntent();
+        sId = itn.getStringExtra("userId");
 
-        mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
+        tvname=(TextView)findViewById(R.id.storeName);
+        tvcategory=(TextView)findViewById(R.id.storeCategory);
+        tvmenu=(TextView)findViewById(R.id.storeMenu);
+        tvtime=(TextView)findViewById(R.id.storeTime);
+        instaText = (TextView) findViewById(R.id.storeInstaText);
+        instaLayout = (LinearLayout) findViewById(R.id.storeInstaLayout);
+        instaLine = (View) findViewById(R.id.instar_line);
+        hash1=(Button)findViewById(R.id.storeInsta1);
+        hash2=(Button)findViewById(R.id.storeInsta2);
+        hash3=(Button)findViewById(R.id.storeInsta3);
+        hash4=(Button)findViewById(R.id.storeInsta4);
+        hash5=(Button)findViewById(R.id.storeInsta5);
 
-        mArrayList = new ArrayList<>();
+        btn_map = (Button) findViewById(R.id.btn_map);
+        btn_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StoreInfoActivity.this, MapsActivity.class);
+                intent.putExtra("store_name", tvname.getText().toString());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
 
-        mAdapter = new StoreInfoAdapter(this, mArrayList);
-        mRecyclerView.setAdapter(mAdapter);
+        newReviewBtn = (Button) findViewById(R.id.reviewBtn);
+        newReviewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent itn = new Intent(StoreInfoActivity.this, ReviewActivity.class);
+                itn.putExtra("store_name", tvname.getText().toString());
+                itn.putExtra("userId", sId);
+                itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(itn);
+            }
+        });
 
-        mArrayList.clear();
-        mAdapter.notifyDataSetChanged();
+        final Intent intent = new Intent(StoreInfoActivity.this, InstaSearchActivity.class);
+        intent.putExtra("userId", sId);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        hash1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("insta", hash1.getText().toString());
+                startActivity(intent);
+            }
+        });
+        hash2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("insta", hash2.getText().toString());
+                startActivity(intent);
+            }
+        });
+        hash3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("insta", hash3.getText().toString());
+                startActivity(intent);
+            }
+        });
+        hash4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("insta", hash4.getText().toString());
+                startActivity(intent);
+            }
+        });
+        hash5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("insta", hash5.getText().toString());
+                startActivity(intent);
+            }
+        });
 
         GetData task = new GetData();
-        String name = intent.getStringExtra("store_name");
+        String name = itn.getStringExtra("store_name");
         String link = "http://220.69.170.218/store.php?name=" + name;
         task.execute(link, "");
     }
 
-    private class GetData extends AsyncTask<String, Void, String> {
+   private class GetData extends AsyncTask<String, Void, String> {
 
         ProgressDialog progressDialog;
         String errorString = null;
@@ -84,11 +145,12 @@ public class StoreInfoActivity extends AppCompatActivity {
             super.onPostExecute(result);
 
             progressDialog.dismiss();
-            mTextViewResult.setText(result);
+           // mTextViewResult.setText(result);
             Log.d(TAG, "response - " + result);
 
             if (result == null) {
-                mTextViewResult.setText(errorString);
+                Log.e("error", "resultNull");
+                //mTextViewResult.setText(errorString);
             } else {
                 mJsonString = result;
                 showResult();
@@ -98,7 +160,6 @@ public class StoreInfoActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-
             String serverURL = params[0];
             String postParameters = params[1];
 
@@ -175,7 +236,7 @@ public class StoreInfoActivity extends AppCompatActivity {
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
             for (int i = 0; i < jsonArray.length(); i++) {
-
+                Log.e("size", String.valueOf(i));
                 JSONObject item = jsonArray.getJSONObject(i);
 
                 String name = item.getString(TAG_NAME);
@@ -190,20 +251,35 @@ public class StoreInfoActivity extends AppCompatActivity {
                 personalData.setStore_category(category);
                 personalData.setStore_menu(menu);
                 personalData.setStore_time(time);
-                personalData.setStore_insta(insta);
+                personalData.setStore_instagram(insta);
                 String[] array = insta.split(",");
                 for(int k=0; k<array.length; k++){
                     personalData.sethash(array[k]);
                 }
                 personalData.setUser_id(sId);
-
-                mArrayList.add(personalData);
-                mAdapter.notifyDataSetChanged();
+                change(personalData);
             }
         } catch (JSONException e) {
 
             Log.d(TAG, "showResult : ", e);
         }
 
+    }
+    private void change(InfoData data){
+        tvname.setText(data.getStore_name());
+        tvcategory.setText('['+data.getStore_category()+']');
+        tvmenu.setText(data.getStore_menu());
+        tvtime.setText(data.getStore_time());
+        Log.e("data", data.getStore_instagram());
+        if(!data.getStore_instagram().equals("...")){
+            instaText.setVisibility(View.VISIBLE);
+            instaLayout.setVisibility(View.VISIBLE);
+            instaLine.setVisibility(View.VISIBLE);
+            hash1.setText(data.gethash(0));
+            hash2.setText(data.gethash(1));
+            hash3.setText(data.gethash(2));
+            hash4.setText(data.gethash(3));
+            hash5.setText(data.gethash(4));
+        }
     }
 }
