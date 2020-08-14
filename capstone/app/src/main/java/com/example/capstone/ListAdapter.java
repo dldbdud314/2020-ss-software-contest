@@ -38,7 +38,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHold
         protected TextView category;
         protected TextView price;
         protected TextView insta;
-        protected TextView instaTitle;
+
         @SuppressLint("WrongViewCast")
         public CustomViewHolder(View view) {
             super(view);
