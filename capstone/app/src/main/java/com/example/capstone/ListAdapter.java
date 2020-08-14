@@ -2,10 +2,12 @@ package com.example.capstone;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +40,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHold
         protected TextView category;
         protected TextView price;
         protected TextView insta;
+        protected Button btn_scrapsave;
 
         @SuppressLint("WrongViewCast")
         public CustomViewHolder(View view) {
@@ -46,6 +49,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHold
             this.category = (TextView) view.findViewById(R.id.textView_list_category);
             this.price = (TextView) view.findViewById(R.id.textView_list_price);
             this.insta = (TextView) view.findViewById(R.id.textView_list_insta);
+            this.btn_scrapsave = (Button) view.findViewById(R.id.btn_scrapsave);
             view.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -61,6 +65,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHold
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         context.startActivity(intent);
                     }
+                }
+            });
+
+            btn_scrapsave.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("longi", "스크랩 자리입니다");
                 }
             });
         }
