@@ -55,6 +55,7 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
                 public void onClick(View v) {
                     Intent intent = new Intent(context.getApplicationContext(), MapsActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    intent.putExtra("store_name", name.getText().toString());
                     context.startActivity(intent);
                 }
             });
