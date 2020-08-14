@@ -32,7 +32,7 @@
         <activity android:name=".IdPassSearchActivity"/>
         <activity android:name=".MyPageActivity"/>
         <activity android:name=".MapsActivity"/>
-        <activity android:name=".ReviewActivity"/>
+        <activity android:name=".ReviewRegisterActivity"/>
         <activity android:name=".InstaSearchActivity"/>
         <activity android:name=".MyReviewActivity"/>
       

@@ -1,5 +1,6 @@
 package com.example.capstone;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +15,10 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,14 +28,16 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class ReviewActivity extends AppCompatActivity {
+public class ReviewRegisterActivity extends AppCompatActivity {
     private static String IP_ADDRESS = "220.69.170.218";
+    private static String TAG = "phptest";
     TextView nicknameTxt, storenameTxt;
     RatingBar ratingbar;
     EditText reviewEdittext;
     Button registerBtn;
-    String sReviewText, sUserId, sStoreName;
+    String sNickname, sReviewText, sUserId, sStoreName;
     Integer sRate;
+    private String mJsonString;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,15 +52,15 @@ public class ReviewActivity extends AppCompatActivity {
         reviewEdittext = (EditText)findViewById(R.id.reviewEdittext);
         registerBtn = (Button)findViewById(R.id.reviewRegisterBtn);
 
-
-        //세션유지 구현 후 유저 정보 넘겨주는 거
-        //sUserId 웅앵웅
         sUserId = intent.getStringExtra("userId");
         sStoreName = intent.getStringExtra("store_name");
-        nicknameTxt.setText(sUserId);
+
+//        GetData task = new GetData();
+//        String link = "http://220.69.170.218/getNickname.php?id=" + sUserId;
+//        task.execute(link, "");
+
+        nicknameTxt.setText(sNickname);
         storenameTxt.setText(sStoreName);
-        //사용자의 nickname이 나와야 함
-        //nicknameTxt.setText();
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +73,115 @@ public class ReviewActivity extends AppCompatActivity {
             }
         });
     }
+
+//    private class GetData extends AsyncTask<String, Void, String> {
+//
+//        ProgressDialog progressDialog;
+//        String errorString = null;
+//
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//
+//            progressDialog = ProgressDialog.show(ReviewRegisterActivity.this,
+//                    "Please Wait", null, true, true);
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//            super.onPostExecute(result);
+//
+//            progressDialog.dismiss();
+//            Log.d(TAG, "response - " + result);
+//
+//            if (result == null) {
+//                Log.e("error", "resultNull");
+//            } else {
+//                mJsonString = result;
+//                showResult();
+//            }
+//        }
+//
+//
+//        @Override
+//        protected String doInBackground(String... params) {
+//            String serverURL = params[0];
+//            String postParameters = params[1];
+//
+//
+//            try {
+//
+//                URL url = new URL(serverURL);
+//                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+//
+//
+//                httpURLConnection.setReadTimeout(5000);
+//                httpURLConnection.setConnectTimeout(5000);
+//                httpURLConnection.setRequestMethod("POST");
+//                httpURLConnection.setDoInput(true);
+//                httpURLConnection.connect();
+//
+//
+//                OutputStream outputStream = httpURLConnection.getOutputStream();
+//                outputStream.write(postParameters.getBytes("UTF-8"));
+//                outputStream.flush();
+//                outputStream.close();
+//
+//
+//                int responseStatusCode = httpURLConnection.getResponseCode();
+//                Log.d(TAG, "response code - " + responseStatusCode);
+//
+//                InputStream inputStream;
+//                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+//                    inputStream = httpURLConnection.getInputStream();
+//                } else {
+//                    inputStream = httpURLConnection.getErrorStream();
+//                }
+//
+//
+//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+//                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//
+//                StringBuilder sb = new StringBuilder();
+//                String line;
+//
+//                while ((line = bufferedReader.readLine()) != null) {
+//                    sb.append(line);
+//                }
+//
+//                bufferedReader.close();
+//
+//                return sb.toString().trim();
+//
+//
+//            } catch (Exception e) {
+//
+//                Log.d(TAG, "GetData : Error ", e);
+//                errorString = e.toString();
+//
+//                return null;
+//            }
+//
+//        }
+//    }
+//
+//
+//    private void showResult() {
+//
+//        String TAG_JSON = "webnautes";
+//        String TAG_NAME = "nickname";
+//
+//        try {
+//            JSONObject jsonObject = new JSONObject(mJsonString);
+//            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+//
+//            JSONObject item = jsonArray.getJSONObject(0);
+//            sNickname = item.getString(TAG_NAME);
+//        } catch (JSONException e) {
+//            Log.d(TAG, "showResult : ", e);
+//        }
+//
+//    }
 
     public class RegistReview extends AsyncTask<Void, Integer, Void> {
         String data = "";
@@ -123,6 +239,15 @@ public class ReviewActivity extends AppCompatActivity {
                 Log.e("Success", "완료!");
                 Toast successToast = Toast.makeText(getApplicationContext(),"등록 성공", Toast.LENGTH_SHORT);
                 successToast.show();
+
+                ReviewData reviewData = new ReviewData(sUserId, sRate, sReviewText);
+
+                reviewData.setNickname(sUserId);
+                reviewData.setReviewRate(sRate);
+                reviewData.setReviewText(sReviewText);
+
+                StoreInfoActivity.reviewList.add(reviewData);
+                StoreInfoActivity.reviewAdapter.notifyDataSetChanged();
             } else {
                 Log.e("Fail", "실패!");
                 Toast failToast = Toast.makeText(getApplicationContext(),"등록 실패", Toast.LENGTH_SHORT);
