@@ -25,7 +25,7 @@ import java.net.URL;
 public class MyPageActivity extends AppCompatActivity {
     private static String IP_ADDRESS = "220.69.170.218";
     TextView tv_name, tv_nick, tv_email;
-    Button logout, clear;
+    Button logout, clear, myreview;
     String sId;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,6 +81,17 @@ public class MyPageActivity extends AppCompatActivity {
                             }
                         })
                         .show();
+            }
+        });
+
+        myreview = (Button)findViewById(R.id.btn_review);
+        myreview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyPageActivity.this, MyReviewActivity.class);
+                intent.putExtra("userId", sId);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
             }
         });
     }
