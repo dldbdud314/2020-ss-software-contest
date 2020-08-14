@@ -34,6 +34,7 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
         protected TextView time;
         protected Button btn_map;
         protected TextView instaText;
+        protected View instaLine;
         protected LinearLayout instaLayout;
         protected Button hash1,hash2,hash3,hash4,hash5;
         protected Button newReviewBtn;
@@ -60,6 +61,7 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
 
             this.instaText = (TextView) view.findViewById(R.id.storeInstaText);
             this.instaLayout = (LinearLayout) view.findViewById(R.id.storeInstaLayout);
+            this.instaLine = (View) view.findViewById(R.id.instar_line);
             this.hash1=(Button)view.findViewById(R.id.storeInsta1);
             this.hash2=(Button)view.findViewById(R.id.storeInsta2);
             this.hash3=(Button)view.findViewById(R.id.storeInsta3);
@@ -67,6 +69,7 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
             this.hash5=(Button)view.findViewById(R.id.storeInsta5);
             newReviewBtn = (Button) view.findViewById(R.id.reviewBtn);
             reviewListView = (ListView) view.findViewById(R.id.reviewList);
+
 
             reviewListView.setAdapter(reviewAdapter);
             final Intent intent = new Intent(context.getApplicationContext(), InstaSearchActivity.class);
@@ -80,6 +83,15 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
                     itn.putExtra("store_name", name.getText().toString());
                     itn.putExtra("userId", sId);
                     itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    context.startActivity(itn);
+                }
+            });
+            btn_map.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent itn = new Intent(context.getApplicationContext(), MapsActivity.class);
+                    itn.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    itn.putExtra("store_name", name.getText());
                     context.startActivity(itn);
                 }
             });
@@ -144,6 +156,7 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
         if(!mList.get(position).getStore_insta().equals("...")){
             viewholder.instaText.setVisibility(View.VISIBLE);
             viewholder.instaLayout.setVisibility(View.VISIBLE);
+            viewholder.instaLine.setVisibility(View.VISIBLE);
             viewholder.hash1.setText(mList.get(position).gethash(0));
             viewholder.hash2.setText(mList.get(position).gethash(1));
             viewholder.hash3.setText(mList.get(position).gethash(2));

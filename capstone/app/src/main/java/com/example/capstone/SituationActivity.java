@@ -33,7 +33,6 @@ public class SituationActivity extends Activity {
                 intent.putExtra("userId", sId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                finish();
             }
         });
         btn2.setOnClickListener(new View.OnClickListener(){
@@ -46,7 +45,6 @@ public class SituationActivity extends Activity {
                 intent.putExtra("userId", sId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                finish();
             }
         });
         btn3.setOnClickListener(new View.OnClickListener(){
@@ -59,7 +57,6 @@ public class SituationActivity extends Activity {
                 intent.putExtra("userId", sId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                finish();
             }
         });
         btn4.setOnClickListener(new View.OnClickListener(){
@@ -72,7 +69,6 @@ public class SituationActivity extends Activity {
                 intent.putExtra("userId", sId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                finish();
             }
         });
         btn5.setOnClickListener(new View.OnClickListener(){
@@ -85,7 +81,6 @@ public class SituationActivity extends Activity {
                 intent.putExtra("userId", sId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                finish();
             }
         });
         btn6.setOnClickListener(new View.OnClickListener(){
@@ -98,7 +93,6 @@ public class SituationActivity extends Activity {
                 intent.putExtra("userId", sId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                finish();
             }
         });
         btn7.setOnClickListener(new View.OnClickListener(){
@@ -111,7 +105,6 @@ public class SituationActivity extends Activity {
                 intent.putExtra("userId", sId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                finish();
             }
         });
         btn8.setOnClickListener(new View.OnClickListener(){
@@ -124,7 +117,6 @@ public class SituationActivity extends Activity {
                 intent.putExtra("userId", sId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                finish();
             }
         });
     }
