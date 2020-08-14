@@ -34,6 +34,7 @@
         <activity android:name=".MapsActivity"/>
         <activity android:name=".ReviewActivity"/>
         <activity android:name=".InstaSearchActivity"/>
+        <activity android:name=".MyReviewActivity"/>
       
         <meta-data
             android:name="com.kakao.sdk.AppKey"

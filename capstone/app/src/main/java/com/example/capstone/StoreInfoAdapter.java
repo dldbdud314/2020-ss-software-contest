@@ -2,8 +2,6 @@ package com.example.capstone;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +57,7 @@ public class StoreInfoAdapter extends RecyclerView.Adapter<StoreInfoAdapter.Cust
                     context.startActivity(intent);
                 }
             });
+
             this.instaText = (TextView) view.findViewById(R.id.storeInstaText);
             this.instaLayout = (LinearLayout) view.findViewById(R.id.storeInstaLayout);
             this.hash1=(Button)view.findViewById(R.id.storeInsta1);
