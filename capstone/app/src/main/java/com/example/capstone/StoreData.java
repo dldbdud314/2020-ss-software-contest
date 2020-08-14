@@ -6,7 +6,7 @@ public class StoreData {
     private String store_name;
     private String store_category;
     private int store_price;
-    private String store_insta;
+    private String store_instagram;
     private ArrayList<String> hash = new ArrayList<String>();
 
     public String getStore_name() {
@@ -31,12 +31,9 @@ public class StoreData {
         for(int i=0; i<length; i++){
             str+='#'+hash.get(i);
         }
-        hash.clear();
         return str;
     }
-    public String getStore_insta() {
-        return store_insta;
-    }
+
     public void setStore_name(String store_name) {
         this.store_name = store_name;
     }
@@ -46,8 +43,7 @@ public class StoreData {
     public void setStore_price(int store_price) {
         this.store_price = store_price;
     }
-    public void setStore_insta(String store_insta) { this.store_insta = store_insta; }
-    public void sethash(String hast){this.hash.add(hast);}
+   public void sethash(String hast){this.hash.add(hast);}
 
     private String userId;
     public String getUser_id() {
@@ -55,6 +51,14 @@ public class StoreData {
     }
     public void setUser_id(String userId) {
         this.userId = userId;
+    }
+
+    public String getStore_instagram() {
+        return store_instagram;
+    }
+
+    public void setStore_instagram(String store_instagram) {
+        this.store_instagram = store_instagram;
     }
 }
 

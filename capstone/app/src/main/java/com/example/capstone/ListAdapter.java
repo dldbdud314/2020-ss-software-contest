@@ -55,13 +55,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHold
                     if (pos != RecyclerView.NO_POSITION)
                     {
                         item = mList.get(pos);
-
                         Intent intent = new Intent(context.getApplicationContext(), StoreInfoActivity.class);
                         intent.putExtra("store_name", item.getStore_name());
                         intent.putExtra("userId", sId);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         context.startActivity(intent);
-                        context.finish();
                     }
                 }
             });
@@ -82,7 +80,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CustomViewHold
         viewholder.name.setText(mList.get(position).getStore_name());
         viewholder.category.setText('['+mList.get(position).getStore_category()+']');
         viewholder.price.setText(mList.get(position).getStore_price());
-        if(!mList.get(position).getStore_insta().equals("...")){
+        if(!mList.get(position).getStore_instagram().equals("...")){
             viewholder.insta.setVisibility(View.VISIBLE);
             viewholder.insta.setText(mList.get(position).gethash());
         }

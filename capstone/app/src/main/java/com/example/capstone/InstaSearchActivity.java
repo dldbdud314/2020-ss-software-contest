@@ -185,7 +185,7 @@ public class InstaSearchActivity extends AppCompatActivity {
                 storeData.setStore_category(category);
                 storeData.setStore_price(price);
                 storeData.setUser_id(sId);
-                storeData.setStore_insta(insta);
+                storeData.setStore_instagram(insta);
                 String[] array = insta.split(",");
                 for(int k=0; k<array.length; k++){
                     storeData.sethash(array[k]);
