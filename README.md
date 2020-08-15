@@ -20,7 +20,7 @@ master --- jeehyun yooyoung sumin
 - 수민:
 
 ### 개발 환경
-- 기본 환경
+- 기본 환경 및 기술스택
 
 ![image](https://user-images.githubusercontent.com/57944099/90315048-2ee10580-df53-11ea-967f-414e436179d2.png)
 ![image](https://user-images.githubusercontent.com/57944099/90315057-402a1200-df53-11ea-839e-004c886b46f7.png)
