@@ -11,7 +11,7 @@
 > [이유영](https://github.com/dldbdud314) <br>
 > [안수민](https://github.com/ahnsumin)
 
-### 깃 브랜치 (이름)
+### 깃 브랜치 (참여자 이름)
 master --- jeehyun yooyoung sumin
 
 ### 역할
