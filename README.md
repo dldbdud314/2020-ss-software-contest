@@ -17,7 +17,7 @@ master --- jeehyun yooyoung sumin
 ### 역할
 - 지현: 
 - 유영: 
-- 수민:
+- 수민: 로그인(이메일 인증 확인 후 로그인 가능 등 SignInActivity 일부), 회원가입(유효성 검사 등 SignUpActivity 일부), 지도(지도뷰, 마커 등 MapsActivity)
 
 ### 개발 환경
 - 기본 환경 및 기술스택
