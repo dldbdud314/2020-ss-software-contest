@@ -39,7 +39,7 @@ public class SearchActivity extends AppCompatActivity {
     private String mJsonString;
     private EditText searchTxt;
     private Button searchBtn;
-    private TextView noResultTxt;
+    //private TextView noResultTxt;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class SearchActivity extends AppCompatActivity {
 
         searchTxt = (EditText) findViewById(R.id.searchText);
         searchBtn = (Button) findViewById(R.id.searchBtn);
-        noResultTxt = (TextView)findViewById(R.id.no_result_text);
+        //noResultTxt = (TextView)findViewById(R.id.no_result_text);
         mTextViewResult = (TextView)findViewById(R.id.textView_search_result);
         mRecyclerView = (RecyclerView) findViewById(R.id.search_list);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -182,8 +182,6 @@ public class SearchActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
-            //검색결과 없을 때 처리해야 함
-            //if(jsonArray.length()==0) noResultTxt.setVisibility(View.VISIBLE);
 
             for(int i=0;i<jsonArray.length();i++){
 
