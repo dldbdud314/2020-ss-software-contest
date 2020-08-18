@@ -35,7 +35,7 @@ public class ReviewRegisterActivity extends AppCompatActivity {
     RatingBar ratingbar;
     EditText reviewEdittext;
     Button registerBtn;
-    String sNickname, sReviewText, sUserId, sStoreName;
+    String sNickname, sReviewText, sUserId, sStoreName, ssNickname;
     Integer sRate;
     private String mJsonString;
 
@@ -46,7 +46,7 @@ public class ReviewRegisterActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        nicknameTxt = (TextView)findViewById(R.id.id);
+        nicknameTxt = (TextView)findViewById(R.id.nickname);
         storenameTxt = (TextView)findViewById(R.id.store);
         ratingbar = (RatingBar)findViewById(R.id.ratingBar);
         reviewEdittext = (EditText)findViewById(R.id.reviewEdittext);
@@ -55,11 +55,10 @@ public class ReviewRegisterActivity extends AppCompatActivity {
         sUserId = intent.getStringExtra("userId");
         sStoreName = intent.getStringExtra("store_name");
 
-//        GetData task = new GetData();
-//        String link = "http://220.69.170.218/getNickname.php?id=" + sUserId;
-//        task.execute(link, "");
+        GetData task = new GetData();
+        String link = "http://220.69.170.218/getNickname.php?id=" + sUserId;
+        task.execute(link, "");
 
-        nicknameTxt.setText(sNickname);
         storenameTxt.setText(sStoreName);
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -74,114 +73,117 @@ public class ReviewRegisterActivity extends AppCompatActivity {
         });
     }
 
-//    private class GetData extends AsyncTask<String, Void, String> {
-//
-//        ProgressDialog progressDialog;
-//        String errorString = null;
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//
-//            progressDialog = ProgressDialog.show(ReviewRegisterActivity.this,
-//                    "Please Wait", null, true, true);
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            super.onPostExecute(result);
-//
-//            progressDialog.dismiss();
-//            Log.d(TAG, "response - " + result);
-//
-//            if (result == null) {
-//                Log.e("error", "resultNull");
-//            } else {
-//                mJsonString = result;
-//                showResult();
-//            }
-//        }
-//
-//
-//        @Override
-//        protected String doInBackground(String... params) {
-//            String serverURL = params[0];
-//            String postParameters = params[1];
-//
-//
-//            try {
-//
-//                URL url = new URL(serverURL);
-//                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-//
-//
-//                httpURLConnection.setReadTimeout(5000);
-//                httpURLConnection.setConnectTimeout(5000);
-//                httpURLConnection.setRequestMethod("POST");
-//                httpURLConnection.setDoInput(true);
-//                httpURLConnection.connect();
-//
-//
-//                OutputStream outputStream = httpURLConnection.getOutputStream();
-//                outputStream.write(postParameters.getBytes("UTF-8"));
-//                outputStream.flush();
-//                outputStream.close();
-//
-//
-//                int responseStatusCode = httpURLConnection.getResponseCode();
-//                Log.d(TAG, "response code - " + responseStatusCode);
-//
-//                InputStream inputStream;
-//                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
-//                    inputStream = httpURLConnection.getInputStream();
-//                } else {
-//                    inputStream = httpURLConnection.getErrorStream();
-//                }
-//
-//
-//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-//                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//
-//                StringBuilder sb = new StringBuilder();
-//                String line;
-//
-//                while ((line = bufferedReader.readLine()) != null) {
-//                    sb.append(line);
-//                }
-//
-//                bufferedReader.close();
-//
-//                return sb.toString().trim();
-//
-//
-//            } catch (Exception e) {
-//
-//                Log.d(TAG, "GetData : Error ", e);
-//                errorString = e.toString();
-//
-//                return null;
-//            }
-//
-//        }
-//    }
-//
-//
-//    private void showResult() {
-//
-//        String TAG_JSON = "webnautes";
-//        String TAG_NAME = "nickname";
-//
-//        try {
-//            JSONObject jsonObject = new JSONObject(mJsonString);
-//            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
-//
-//            JSONObject item = jsonArray.getJSONObject(0);
-//            sNickname = item.getString(TAG_NAME);
-//        } catch (JSONException e) {
-//            Log.d(TAG, "showResult : ", e);
-//        }
-//
-//    }
+    private class GetData extends AsyncTask<String, Void, String> {
+
+        ProgressDialog progressDialog;
+        String errorString = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(ReviewRegisterActivity.this,
+                    "Please Wait", null, true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+            Log.d(TAG, "response - " + result);
+
+            if (result == null) {
+                Log.e("error", "resultNull");
+            } else {
+                mJsonString = result;
+                showResult();
+            }
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+            String serverURL = params[0];
+            String postParameters = params[1];
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+
+                return sb.toString().trim();
+
+
+            } catch (Exception e) {
+
+                Log.d(TAG, "GetData : Error ", e);
+                errorString = e.toString();
+
+                return null;
+            }
+
+        }
+    }
+
+    private void showResult() {
+
+        String TAG_JSON = "webnautes";
+        String TAG_NAME = "nickname";
+
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+            JSONObject item = jsonArray.getJSONObject(0);
+            sNickname = item.getString(TAG_NAME);
+            nicknameTxt.setText(sNickname);
+
+            ssNickname = sNickname;
+
+        } catch (JSONException e) {
+            Log.d(TAG, "showResult : ", e);
+        }
+
+    }
 
     public class RegistReview extends AsyncTask<Void, Integer, Void> {
         String data = "";
@@ -240,9 +242,9 @@ public class ReviewRegisterActivity extends AppCompatActivity {
                 Toast successToast = Toast.makeText(getApplicationContext(),"등록 성공", Toast.LENGTH_SHORT);
                 successToast.show();
 
-                ReviewData reviewData = new ReviewData(sUserId, sRate, sReviewText);
+                ReviewData reviewData = new ReviewData(ssNickname, sRate, sReviewText);
 
-                reviewData.setNickname(sUserId);
+                reviewData.setNickname(ssNickname);
                 reviewData.setReviewRate(sRate);
                 reviewData.setReviewText(sReviewText);
 
