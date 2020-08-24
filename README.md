@@ -20,7 +20,7 @@ master --- jeehyun yooyoung sumin
 - 수민: 로그인(이메일 인증 확인 후 로그인 가능 등 SignInActivity 일부), 회원가입(유효성 검사 등 SignUpActivity 일부), 지도(지도뷰, 마커 등 MapsActivity), 아이디/비밀번호 찾기(IdPassSearchActivity)
 
 ### 개발 환경
-- 기본 환경 및 기술스택
+#### 기본 환경 및 기술스택
 
 ![image](https://user-images.githubusercontent.com/57944099/90315048-2ee10580-df53-11ea-967f-414e436179d2.png)
 ![image](https://user-images.githubusercontent.com/57944099/90315057-402a1200-df53-11ea-839e-004c886b46f7.png)
@@ -29,7 +29,8 @@ master --- jeehyun yooyoung sumin
 
 ![image](https://user-images.githubusercontent.com/57944099/90315148-0d344e00-df54-11ea-8318-321f7ff36ed2.png)
 
-- 지도
+#### 기타
+- 카카오 지도 api
 
 ![image](https://user-images.githubusercontent.com/57944099/90315192-6b613100-df54-11ea-801e-e9b81326eb90.png)
 
