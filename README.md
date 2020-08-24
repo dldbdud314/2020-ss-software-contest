@@ -16,7 +16,7 @@ master --- jeehyun yooyoung sumin
 
 ### 역할
 - 지현: 
-- 유영: 
+- 유영: 검색 기능(SearchActivity), 리뷰 리스트 및 리뷰 등록 기능(StoreInfoActivity 일부, ReviewRegisterActivity), 인스타그램 가게 크롤링
 - 수민: 로그인(이메일 인증 확인 후 로그인 가능 등 SignInActivity 일부), 회원가입(유효성 검사 등 SignUpActivity 일부), 지도(지도뷰, 마커 등 MapsActivity), 아이디/비밀번호 찾기(IdPassSearchActivity)
 
 ### 개발 환경
@@ -39,6 +39,27 @@ master --- jeehyun yooyoung sumin
 
 ### 전체 플로우 및 기본 기능 설명
 
+1. 로그인/회원가입
+2. 상황별 적합한 맛집 추천
+3. 가게 상세 정보 조회
+4. 맛집 검색
+5. 마이페이지
+
+![image](https://user-images.githubusercontent.com/57944099/91018482-9d485680-e62a-11ea-90fa-e4941cac981e.png)
+
+
 ### 파일 구조
+#### 안드로이드
+
+![image](https://user-images.githubusercontent.com/57944099/91017895-cc11fd00-e629-11ea-9afe-4ad6191e85b8.png)
+
+#### php
+
+![image](https://user-images.githubusercontent.com/57944099/91017975-e51aae00-e629-11ea-88e5-c9ada0f83677.png)
+
+#### ERD
+
+![image](https://user-images.githubusercontent.com/57944099/91018011-f663ba80-e629-11ea-9c87-509427ace96f.png)
+
 
 ### 핵심 기능 및 뷰 캡쳐
