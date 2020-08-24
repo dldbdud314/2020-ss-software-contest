@@ -39,12 +39,14 @@ master --- jeehyun yooyoung sumin
 
 ### 전체 플로우 및 기본 기능 설명
 
+#### 기본 기능
 1. 로그인/회원가입
 2. 상황별 적합한 맛집 추천
 3. 가게 상세 정보 조회
 4. 맛집 검색
 5. 마이페이지
 
+#### 전체 플로우
 ![image](https://user-images.githubusercontent.com/57944099/91018482-9d485680-e62a-11ea-90fa-e4941cac981e.png)
 
 
