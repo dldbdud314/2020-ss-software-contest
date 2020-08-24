@@ -50,16 +50,7 @@ master --- jeehyun yooyoung sumin
 ![image](https://user-images.githubusercontent.com/57944099/91018482-9d485680-e62a-11ea-90fa-e4941cac981e.png)
 
 
-### 파일 구조
-#### 안드로이드
-
-![image](https://user-images.githubusercontent.com/57944099/91017895-cc11fd00-e629-11ea-9afe-4ad6191e85b8.png)
-
-#### php
-
-![image](https://user-images.githubusercontent.com/57944099/91017975-e51aae00-e629-11ea-88e5-c9ada0f83677.png)
-
-#### ERD
+### ERD
 
 ![image](https://user-images.githubusercontent.com/57944099/91018011-f663ba80-e629-11ea-9c87-509427ace96f.png)
 
