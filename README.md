@@ -25,9 +25,6 @@ master --- jeehyun yooyoung sumin
 ![image](https://user-images.githubusercontent.com/57944099/90315048-2ee10580-df53-11ea-967f-414e436179d2.png)
 ![image](https://user-images.githubusercontent.com/57944099/90315057-402a1200-df53-11ea-839e-004c886b46f7.png)
 ![image](https://user-images.githubusercontent.com/57944099/90315065-50da8800-df53-11ea-959b-e7550fec40ef.png)
-<br>
-
-![image](https://user-images.githubusercontent.com/57944099/90315148-0d344e00-df54-11ea-8318-321f7ff36ed2.png)
 
 #### 기타
 - 카카오 지도 api
@@ -67,5 +64,4 @@ master --- jeehyun yooyoung sumin
 ![image](https://user-images.githubusercontent.com/57944099/91018482-9d485680-e62a-11ea-90fa-e4941cac981e.png)
 
 ### ERD
-
 ![image](https://user-images.githubusercontent.com/57944099/91018011-f663ba80-e629-11ea-9c87-509427ace96f.png)
