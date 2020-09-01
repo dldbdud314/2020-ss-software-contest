@@ -15,7 +15,7 @@
 master --- jeehyun yooyoung sumin
 
 ### 역할
-- 지현: 
+- 지현: 로그인(SignInActivity 전반), 마이페이지/로그아웃/회원탈퇴(MypageActivity), 회원가입(SignUpActivity 전반), 인스타그램 형용사 태그 추출(KoNLPy패키지 사용), 가게상세페이지(StoreInfoActivity)
 - 유영: 검색 기능(SearchActivity), 리뷰 리스트 및 리뷰 등록 기능(StoreInfoActivity 일부, ReviewRegisterActivity), 인스타그램 가게 크롤링
 - 수민: 로그인(이메일 인증 확인 후 로그인 가능 등 SignInActivity 일부), 회원가입(유효성 검사 등 SignUpActivity 일부), 지도(지도뷰, 마커 등 MapsActivity), 아이디/비밀번호 찾기(IdPassSearchActivity)
 
